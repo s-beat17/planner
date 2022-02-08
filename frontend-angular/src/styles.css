@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* здесь находятся общие стили для всех компонентов */
+/* специфичные селекторы находятся в соотв. файлах css компонента */
+
+/*загрузка всех сторонних css*/
+@import "~app/auth/auth.css";
+@import "assets/css/material-dashboard.css";
+

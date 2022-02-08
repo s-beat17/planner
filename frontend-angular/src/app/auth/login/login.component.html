@@ -1,0 +1,107 @@
+<div class="page-wrapper bg-gra-02 font-poppins p-t-130 p-b-100">
+  <div class="container wrapper wrapper--w680">
+
+    <div class="card card-4">
+
+      <div class="card-body">
+
+
+        <!--        форма для заполнения логин-пароль-->
+        <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+
+
+          <div class="row row-space">
+            <div class="col-md-6 col-sm-12">
+              <label class="label">Аккаунт или email</label>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+              <!--              если хотя бы 1 раз нажали кнопку и появились ошибки валидации-->
+              <div *ngIf="firstSubmitted && usernameField.errors">
+                <p *ngIf="usernameField.errors.required" class="error">Обязательное поле</p>
+                <p *ngIf="usernameField.errors.minlength" class="error">Не меньше 6 символов</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="row row-space">
+
+            <div class="col-md-6 col-sm-12">
+              <div class="input-group">
+                <input id="username" type="text" formControlName="username" [readOnly]="isLoading"
+                       class="input--style-4" [ngClass]="{ 'field-error': firstSubmitted && usernameField.errors }"/>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+          <div class="row row-space">
+            <div class="col-md-6 col-sm-12">
+              <label class="label">Пароль</label>
+            </div>
+            <div class="col-md-6 col-sm-12">
+
+              <!--              если хотя бы 1 раз нажали кнопку и появились ошибки валидации-->
+              <div *ngIf="firstSubmitted && passwordField.errors">
+                <div *ngIf="passwordField.errors.required" class="error">Обязательное поле</div>
+                <div *ngIf="passwordField.errors.minlength" class="error">Минимум 6 символов</div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="row row-space">
+
+            <div class="col-md-6 col-sm-12">
+              <div class="input-group">
+                <input id="password" type="password" [readOnly]="isLoading" formControlName="password"
+                       class="input--style-4" [ngClass]="{ 'field-error': firstSubmitted && passwordField.errors }"/>
+              </div>
+            </div>
+
+
+
+          </div>
+
+
+          <div class="row row-space">
+            <div class="col-md-6 col-sm-12">
+              <button class="btn btn--radius-2 btn--blue" type="submit" [disabled]="isLoading"
+                      [ngClass]="{ 'disabled-button': isLoading }">Войти
+              </button>
+
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+
+              <img src="/assets/img/loading.gif" class="loading" *ngIf="isLoading">
+
+
+              <div *ngIf="error && !isLoading">
+                <p class="error">{{error}}</p>
+
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+
+
+        </form>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
