@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.0'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'ru.javabegin.springboot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '15'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+
+
+dependencies {
+    // пока не нужны, т.к. не пишем тесты
+//    implementation 'org.springframework.boot:spring-boot-starter'
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // springboot стартеры
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // spring + jpa/hibernate
+    implementation 'org.springframework.boot:spring-boot-starter-web' // веб технологии
+    implementation 'org.springframework.boot:spring-boot-starter-security' // безопасность
+    implementation 'org.springframework.boot:spring-boot-starter-mail' // работа с email
+    implementation 'org.springframework.boot:spring-boot-starter-validation' // валидация объектов - начиная с springboot 2.3 нужно подключать отдельно (раньше библиотека подключалась автоматически)
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1' // библиотека для работы с jwt
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.1' // коннектор для БД PostgreSQL
+
+    // https://projectlombok.org/setup/gradle
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' // spring-boot-devtools - для быстрой разработкти, автоматическое обновление приложения на сервере, developmentOnly - библиотека не будет включена в production
+    annotationProcessor 'org.projectlombok:lombok'
+
+}
+
+test {
+    useJUnitPlatform()
+}
